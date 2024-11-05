@@ -69,6 +69,9 @@ export default function BasicMenu() {
       setAlignment2(newAlignment);
     }
   };
+  const [alignment3, setAlignment3] = React.useState<String>("0");
+  const [alignment4, setAlignment4] = React.useState<string | null>("0");
+  const [alignment5, setAlignment5] = React.useState<string | null>("");
 
   const [brand, setBrand] = React.useState<String>("Select Brand");
   const [car, setCar] = React.useState<String>("Select Car");
@@ -113,6 +116,7 @@ export default function BasicMenu() {
               key={index}
               onClick={() => {
                 setBrand(item);
+                setAlignment3(item);
                 setCarArray(BrandServ.getAllCarFromBrand(item));
                 handleClose1();
               }}
@@ -145,6 +149,7 @@ export default function BasicMenu() {
               key={index}
               onClick={() => {
                 setCar(item.carname);
+                setAlignment4(item.carname);
                 setVisibility(true);
                 handleClose2();
               }}
@@ -205,7 +210,13 @@ export default function BasicMenu() {
             </Box>
           </div>
         )}
-        <Rechnung duration={alignment} route={alignment2} />
+        <Rechnung
+          duration={alignment}
+          route={alignment2}
+          brand={alignment3}
+          name={alignment4}
+          details={alignment5}
+        />
       </Box>
     </ThemeProvider>
   );

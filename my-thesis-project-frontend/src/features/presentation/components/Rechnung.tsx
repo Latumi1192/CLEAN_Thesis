@@ -15,6 +15,9 @@ interface RechnungProps {
   // Define the props you want to accept
   duration: string | null;
   route: string | null;
+  brand: String;
+  name: string | null;
+  details: string | null;
 }
 
 const Rechnung: React.FC<RechnungProps> = (props) => {
@@ -46,7 +49,7 @@ const Rechnung: React.FC<RechnungProps> = (props) => {
           }}
         >
           <CardHeader
-            title={`Duration: ${props.duration} Km`}
+            title={`Duration: ${props.duration} Months`}
             action={
               <IconButton
                 onClick={handleExpandClick}
@@ -61,9 +64,9 @@ const Rechnung: React.FC<RechnungProps> = (props) => {
           <CardContent>
             {expanded ? (
               <>
-                <Typography>Name: Placeholder</Typography>
-                <Typography>Brand: Placeholder</Typography>
-                <Typography>Details: Placeholder</Typography>
+                <Typography>Brand: {props.brand}</Typography>
+                <Typography>Name: {props.name}</Typography>
+                <Typography>Details: {props.details}</Typography>
                 <Typography>Route: {props.route}</Typography>
               </>
             ) : null}
