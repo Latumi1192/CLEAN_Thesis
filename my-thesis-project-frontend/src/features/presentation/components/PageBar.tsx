@@ -11,13 +11,12 @@ export default function PageBar() {
 
   const theme = createTheme({
     typography: {
-      fontFamily: "Itim",
       button: {},
     },
     palette: {
       primary: {
-        main: "#5F8575",
-        //main: "#5b799e",
+        //main: "#5F8575",
+        main: "#5b799e",
       },
     },
   });

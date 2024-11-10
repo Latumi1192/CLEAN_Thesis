@@ -18,22 +18,28 @@ interface RechnungProps {
   brand: String;
   name: string | null;
   details: string | null;
+  onChange: (value: boolean) => void;
 }
 
 const Rechnung: React.FC<RechnungProps> = (props) => {
+  const { onChange, duration, route, brand, name, details } = props; // Destructure onChange from props
+
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
-    setExpanded(!expanded);
+    const newExpandedState = !expanded;
+    setExpanded(newExpandedState);
+    onChange(newExpandedState);
   };
 
   const theme = createTheme({
+    typography: {
+      button: {},
+    },
     palette: {
       primary: {
-        main: "#B3DCCB",
-        // light: will be calculated from palette.primary.main,
-        // dark: "#000000",
-        // contrastText: will be calculated to contrast with palette.primary.main
+        //main: "#5F8575",
+        main: "#5b799e",
       },
     },
   });
@@ -43,15 +49,17 @@ const Rechnung: React.FC<RechnungProps> = (props) => {
       <Box position="fixed" bottom={0} width="100%">
         <Card
           sx={{
-            border: "2px solid",
-            borderColor: "grey",
             backgroundColor: "primary.main",
           }}
         >
           <CardHeader
-            title={`Duration: ${props.duration} Months`}
+            sx={{ color: "white" }}
+            title={`Duration: ${
+              props.duration == null ? 0 : props.duration
+            } Months`}
             action={
               <IconButton
+                sx={{ color: "white" }}
                 onClick={handleExpandClick}
                 aria-expanded={expanded}
                 aria-label="Show more"
@@ -61,13 +69,13 @@ const Rechnung: React.FC<RechnungProps> = (props) => {
               </IconButton>
             }
           />
-          <CardContent>
+          <CardContent sx={{ color: "white" }}>
             {expanded ? (
               <>
-                <Typography>Brand: {props.brand}</Typography>
-                <Typography>Name: {props.name}</Typography>
-                <Typography>Details: {props.details}</Typography>
-                <Typography>Route: {props.route}</Typography>
+                <Typography variant="h6">Brand: {props.brand}</Typography>
+                <Typography variant="h6">Name: {props.name}</Typography>
+                <Typography variant="h6">Details: {props.details}</Typography>
+                <Typography variant="h6">Route: {props.route}</Typography>
               </>
             ) : null}
           </CardContent>
