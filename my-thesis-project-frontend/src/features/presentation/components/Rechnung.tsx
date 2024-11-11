@@ -46,7 +46,7 @@ const Rechnung: React.FC<RechnungProps> = (props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box position="fixed" bottom={0} width="100%">
+      <Box position="fixed" bottom={0} width="100%" sx={{ zIndex: 9999 }}>
         <Card
           sx={{
             backgroundColor: "primary.main",

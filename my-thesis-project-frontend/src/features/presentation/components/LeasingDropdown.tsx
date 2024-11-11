@@ -2,6 +2,7 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Backdrop from "@mui/material/Backdrop";
 import {
   Box,
   ToggleButton,
@@ -534,6 +535,10 @@ export default function BasicMenu() {
             </Box>
           </div>
         )}
+        <Backdrop
+          sx={{ color: "#fff", zIndex: theme.zIndex.drawer + 1 }}
+          open={rechnung}
+        ></Backdrop>
         <Rechnung
           duration={alignment}
           route={alignment2}
