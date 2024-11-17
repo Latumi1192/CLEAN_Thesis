@@ -11,9 +11,11 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import PageBar from "./PageBar";
+import { UserServiceImpl } from "@/features/domain/services/UserServiceImpl";
 
 export default function LoginForm() {
   const router = useRouter();
+  const userServ = new UserServiceImpl();
 
   const [form, setForm] = React.useState({
     account: "",
@@ -103,6 +105,7 @@ export default function LoginForm() {
                     " and " +
                     form.password
                 );
+                userServ.submitAuth(form);
               }
             }}
           >
