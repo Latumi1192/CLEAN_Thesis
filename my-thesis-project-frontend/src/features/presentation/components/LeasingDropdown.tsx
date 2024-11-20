@@ -5,10 +5,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Backdrop from "@mui/material/Backdrop";
 import {
   Box,
+  Collapse,
+  IconButton,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
 import { CarServiceImpl } from "@/features/domain/services/CarServiceImpl";
 import { BrandServiceImpl } from "@/features/domain/services/BrandServiceImpl";
 import { Car } from "@/features/domain/dto/CarDTO";
@@ -103,6 +106,12 @@ export default function BasicMenu() {
       },
     },
   });
+
+  const [openInfo, setOpenInfo] = React.useState(false);
+
+  const handleToggle = () => {
+    setOpenInfo(!open); // Toggle the state to show/hide the info
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -232,10 +241,12 @@ export default function BasicMenu() {
             style={{ display: "flex", justifyContent: "flex-end", gap: "16px" }}
           >
             <Box>
-              {/* First ToggleButtonGroup with enhanced button styling */}
               <Typography variant="h6" sx={{ color: "#5b799e" }}>
-                Select the duration:
+                Select the Lease Term:
               </Typography>
+              <IconButton title="The leasing duration">
+                <InfoIcon sx={{ fontSize: 15, color: "#5b799e" }} />
+              </IconButton>
               <Box
                 display="flex"
                 flexDirection="column"
@@ -386,8 +397,11 @@ export default function BasicMenu() {
               </Box>
               {/* Second ToggleButtonGroup with same styling */}
               <Typography mt={6} variant="h6" sx={{ color: "#5b799e" }}>
-                Select the duration:
+                Select the Annual Kilometer:
               </Typography>
+              <IconButton title="Expected Kilometer driven each year">
+                <InfoIcon sx={{ fontSize: 15, color: "#5b799e" }} />
+              </IconButton>
               <Box>
                 <ToggleButtonGroup
                   value={alignment2}

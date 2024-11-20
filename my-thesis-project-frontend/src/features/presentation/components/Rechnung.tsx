@@ -75,7 +75,9 @@ const Rechnung: React.FC<RechnungProps> = (props) => {
                 <Typography variant="h6">Brand: {props.brand}</Typography>
                 <Typography variant="h6">Name: {props.name}</Typography>
                 <Typography variant="h6">Details: {props.details}</Typography>
-                <Typography variant="h6">Route: {props.route}</Typography>
+                <Typography variant="h6">
+                  Annual Kilometer: {props.route} Km
+                </Typography>
               </>
             ) : null}
           </CardContent>
