@@ -44,7 +44,7 @@ export default function PageBar() {
             <Button
               sx={{ my: 1, color: "white", display: "block" }}
               onClick={() => {
-                router.push("/leasingcalculator");
+                router.push("/leasing");
               }}
             >
               Leasing Calculator
