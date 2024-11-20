@@ -4,7 +4,7 @@ import { UserService } from "./UserService";
 
 export class UserServiceImpl implements UserService {
   userRepo = new UserRepositoryImpl();
-  submitAuth(user: User): boolean {
-    return this.userRepo.submitAuth(user);
+  async login(user: User): Promise<void> {
+    return this.userRepo.login(user);
   }
 }

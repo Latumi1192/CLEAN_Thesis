@@ -33,6 +33,7 @@ export class CarRepositoryImpl implements CarRepository {
       if (car.brand === carList[i].brand && car.carname === carList[i].carname)
         return false;
     }
+    console.log("Added car " + car.carname + " " + car.brand);
     carList.push(car);
     return true;
   }

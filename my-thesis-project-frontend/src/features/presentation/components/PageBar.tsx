@@ -49,6 +49,14 @@ export default function PageBar() {
             >
               Leasing Calculator
             </Button>
+            <Button
+              sx={{ my: 1, color: "white", display: "block" }}
+              onClick={() => {
+                router.push("/login");
+              }}
+            >
+              Admin
+            </Button>
           </Toolbar>
         </AppBar>
       </Box>

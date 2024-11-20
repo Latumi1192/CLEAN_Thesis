@@ -1,4 +1,4 @@
 import { User } from "../domain/dto/UserDTO";
 export interface UserRepository {
-  submitAuth(user: User): boolean;
+  login(user: User): Promise<void>;
 }

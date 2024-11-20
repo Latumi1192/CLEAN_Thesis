@@ -10,7 +10,6 @@ import {
   AlertTitle,
 } from "@mui/material";
 import { useRouter } from "next/router";
-import PageBar from "./PageBar";
 import { UserServiceImpl } from "@/features/domain/services/UserServiceImpl";
 
 export default function LoginForm() {
@@ -31,9 +30,15 @@ export default function LoginForm() {
 
   const [isRegistered, setRegistered] = React.useState(true);
 
+  React.useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      router.push("/admin");
+    }
+  }, [router]);
+
   return (
     <Box>
-      <PageBar />
       <Box
         component="form"
         m="auto"
@@ -95,7 +100,7 @@ export default function LoginForm() {
         <div>
           <Button
             variant="contained"
-            onClick={() => {
+            onClick={async () => {
               if (form.account == "" || form.password == "")
                 setRegistered(false);
               else {
@@ -105,7 +110,20 @@ export default function LoginForm() {
                     " and " +
                     form.password
                 );
-                userServ.submitAuth(form);
+                try {
+                  // Attempt login with userServ
+                  await userServ.login(form);
+
+                  // Check if the token is available after login
+                  const token = localStorage.getItem("access_token");
+                  if (token) {
+                    router.push("/admin"); // This will redirect to '/dashboard'
+                  } else {
+                    console.log("Login failed or no token found");
+                  }
+                } catch (error) {
+                  console.error("Error logging in:", error);
+                }
               }
             }}
           >
