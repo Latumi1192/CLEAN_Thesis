@@ -21,21 +21,21 @@ import Rechnung from "./Rechnung";
 export default function BasicMenu() {
   const CarServ = new CarServiceImpl();
   const BrandServ = new BrandServiceImpl();
-  const brandArray = BrandServ.getAllBrand();
+  // const brandArray = BrandServ.getAllBrand();
 
-  //   const [brandArray, setBrandArray] = React.useState<String[]>([]);
+  const [brandArray, setBrandArray] = React.useState<String[]>([]);
 
-  //   React.useEffect(() => {
-  //     const tmpArray = BrandServ.getAllBrand();
-  //     tmpArray
-  //       .then((data) => {
-  //         setBrandArray(data.data);
-  //         console.log(data);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching data:", error);
-  //       });
-  //   }, []);
+  React.useEffect(() => {
+    const tmpArray = BrandServ.getAllBrand();
+    tmpArray
+      .then((data) => {
+        setBrandArray(data.data);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const [anchorEl1, setAnchorEl1] = React.useState<null | HTMLElement>(null);
   const [anchorEl2, setAnchorEl2] = React.useState<null | HTMLElement>(null);
@@ -177,13 +177,14 @@ export default function BasicMenu() {
               {brandArray.map((item, index) => (
                 <MenuItem
                   key={index}
-                  onClick={() => {
+                  onClick={async () => {
                     setBrand(item);
                     setAlignment3(item);
                     setAlignment(null);
                     setAlignment2(null);
                     setAlignment4(null);
-                    setCarArray(BrandServ.getAllCarFromBrand(item));
+                    setCarArray(await CarServ.getAllCarFromBrand(item));
+                    console.log(carArray);
                     handleClose1();
                   }}
                 >

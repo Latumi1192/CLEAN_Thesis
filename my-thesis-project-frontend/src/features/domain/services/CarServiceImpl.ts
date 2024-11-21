@@ -4,19 +4,23 @@ import { CarRepositoryImpl } from "@/features/data/CarRepositoryImpl";
 
 export class CarServiceImpl implements CarService {
   CarRepo = new CarRepositoryImpl();
-  getCarName(car: Car): String {
-    return this.CarRepo.getCarName(car);
+
+  async getAllCarFromBrand(brand: String): Promise<Car[]> {
+    try {
+      const data = await this.CarRepo.getAllCarFromBrand(brand);
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.error("An error occurred:", error);
+      return [];
+    }
   }
+
   deleteCar(car: Car): boolean {
     return this.CarRepo.deleteCar(car);
   }
-  getCarByName(name: String): Promise<Car | null> {
-    return Promise.resolve(this.CarRepo.getCarByName(name));
-  }
-  addCarIntoDatabase(car: Car): boolean {
+
+  addCarIntoDatabase(car: Car): Promise<boolean> {
     return this.CarRepo.addCarIntoDatabase(car);
-  }
-  editCar(name: String, placeholder: String): boolean {
-    throw new Error("Method not implemented.");
   }
 }

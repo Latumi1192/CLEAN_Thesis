@@ -9,7 +9,7 @@ export class Car {
   brand: string;
 
   @Prop({ required: true })
-  name: string;
+  carname: string;
 
   @Prop()
   price: number;

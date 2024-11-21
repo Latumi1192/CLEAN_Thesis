@@ -8,7 +8,7 @@ export class CreateCarDto {
 
   @ApiProperty()
   @IsNotEmpty({ message: 'Must present' })
-  name: string;
+  carname: string;
 
   @ApiProperty()
   price: number;
