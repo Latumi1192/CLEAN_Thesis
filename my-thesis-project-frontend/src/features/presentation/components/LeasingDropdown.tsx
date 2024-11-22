@@ -26,7 +26,7 @@ export default function BasicMenu() {
   const [brandArray, setBrandArray] = React.useState<String[]>([]);
 
   React.useEffect(() => {
-    const tmpArray = BrandServ.getAllBrand();
+    const tmpArray = CarServ.getAllBrand();
     tmpArray
       .then((data) => {
         setBrandArray(data.data);

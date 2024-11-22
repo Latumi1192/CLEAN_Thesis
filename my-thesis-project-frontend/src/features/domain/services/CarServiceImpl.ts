@@ -23,4 +23,14 @@ export class CarServiceImpl implements CarService {
   addCarIntoDatabase(car: Car): Promise<boolean> {
     return this.CarRepo.addCarIntoDatabase(car);
   }
+
+  async getAllBrand(): Promise<String[]> {
+    try {
+      const data = await this.CarRepo.getAllBrand();
+      return data;
+    } catch (error) {
+      console.error("An error occurred:", error);
+      return [];
+    }
+  }
 }

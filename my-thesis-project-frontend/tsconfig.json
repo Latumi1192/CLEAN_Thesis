@@ -18,6 +18,7 @@
         "name": "next"
       }
     ],
+    "baseUrl": "./",  // This sets the base directory for relative paths
     "paths": {
       "@/*": ["./src/*"]
     }

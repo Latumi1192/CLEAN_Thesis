@@ -49,4 +49,20 @@ export class CarRepositoryImpl implements CarRepository {
     }
     return false;
   }
+
+  async getAllBrand(): Promise<String[]> {
+    try {
+      const response = await axios.get(`${backendURL}brands`);
+      if (response.status === 200) {
+        const data = response.data as String[];
+        return data;
+      } else {
+        console.error("Request failed:", response.data.message);
+        return [];
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+      return [];
+    }
+  }
 }
